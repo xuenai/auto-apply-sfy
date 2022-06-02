@@ -1,0 +1,24 @@
+{
+  "name": "puppeteer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "node": "node ./src/main.js",
+    "start": "pm2 start ./src/main.js -i 1 && npm run dist:server",
+    "dist:server": "http-server ./dist -p 3005"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "puppeteer": "^14.1.2",
+    "ts-node": "^10.8.0",
+    "typescript": "^4.7.2"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1",
+    "moment": "^2.29.3",
+    "node-schedule": "^2.1.0"
+  }
+}
