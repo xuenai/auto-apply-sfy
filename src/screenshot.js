@@ -2,13 +2,17 @@ const config = require('./config')
 const getComment = require('./comments')
 
 module.exports = async (page) => {
-  await page.goto(config.commentUrl);
-  const commentHandle = await page.$('#sanfengyun-comment');
+  await page.goto(config.commentUrl)
+  const commentHandle = await page.$('#sanfengyun-comment')
   const comment = getComment()
-  await page.evaluate((commentHandle, comment) => {
-    commentHandle.innerHTML = comment
-  }, commentHandle, comment);
-  await commentHandle.dispose();
+  await page.evaluate(
+    (commentHandle, comment) => {
+      commentHandle.innerHTML = comment
+    },
+    commentHandle,
+    comment
+  )
+  await commentHandle.dispose()
   await page.screenshot({
     path: config.shotImgName,
     clip: {
@@ -17,5 +21,5 @@ module.exports = async (page) => {
       width: 718,
       height: 188,
     },
-  });
+  })
 }

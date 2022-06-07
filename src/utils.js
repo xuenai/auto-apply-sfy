@@ -10,6 +10,6 @@ module.exports = {
     const endTime = new Date(date).getTime()
     const startTime = new Date(config.applyTime).getTime()
     // 每5天申请一次
-    return ((endTime - startTime) % (5 * 24 * 60 * 60 * 1000)) === 0
-  }
+    return (endTime - startTime) % (5 * 24 * 60 * 60 * 1000) === 0
+  },
 }
