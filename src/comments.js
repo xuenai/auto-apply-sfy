@@ -58,14 +58,14 @@ const comments = [
 ]
 
 module.exports = () => {
-  let res = '“三丰云”"免费虚拟主机"“免费云服务器”https://www.sanfengyun.com '
+  let res = ''
   const indexs = []
-  while (res.length < 170) {
+  while (res.length < 100) {
     const index = Math.floor(Math.random() * comments.length)
     if (!indexs.includes(index)) {
       indexs.push(index)
       res += `${comments[index]}，`
     }
   }
-  return res
+  return res + '三丰云免费的有，"免费虚拟主机"“免费云服务器” https://www.sanfengyun.com '
 }

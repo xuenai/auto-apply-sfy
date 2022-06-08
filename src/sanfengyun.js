@@ -26,9 +26,14 @@ module.exports = async (page) => {
   const [freeBtn] = await page.$x('//span[text()="免费延期"]')
   await freeBtn.click()
   await sleep(200)
-  const [tip] = await page.$x('//p[text()="延期申请等待审核中"]')
   // 审核中直接推出
+  const [tip] = await page.$x('//p[text()="延期申请等待审核中"]')
   if (tip) return
+  // 重新提交
+  const [resubmit] = await page.$x('//span[text()="重新提交"]')
+  if (resubmit) {
+    await resubmit.click()
+  }
   const urlInput = await page.waitForSelector('#pane-seven .el-input__inner')
   await urlInput.focus()
   await page.keyboard.type(config.zhihuUrl)
