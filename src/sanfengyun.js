@@ -1,7 +1,7 @@
 const config = require('./config')
-const { sleep } = require('./utils')
+const { sleep, STATUS } = require('./utils')
 
-module.exports = async (page) => {
+module.exports = async (page, statusObj) => {
   await page.goto(config.sanfengyunUrl)
   const nameInput = await page.$('#userName')
   await nameInput.focus()
@@ -27,8 +27,17 @@ module.exports = async (page) => {
   await freeBtn.click()
   await sleep(200)
   // 审核中直接推出
+  const [willtip] = await page.$x('//p[text()="您还未到需要提交延期的时间"]')
+  if (willtip) {
+    statusObj.status = STATUS.NOTUNTILL
+    return
+  }
+  // 审核中直接推出
   const [tip] = await page.$x('//p[text()="延期申请等待审核中"]')
-  if (tip) return
+  if (tip) {
+    statusObj.status = STATUS.WAITAUDIT
+    return
+  }
   // 重新提交
   const [resubmit] = await page.$x('//span[text()="重新提交"]')
   if (resubmit) {
