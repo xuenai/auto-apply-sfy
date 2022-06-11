@@ -20,6 +20,7 @@ async function main() {
     await utils.sleep(Math.random() * 6 * 60 * 1000)
     const browser = await puppeteer.launch({
       headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
       // executablePath: "C:\\Users\\sky\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe"
     })
     const page = await browser.newPage()
