@@ -17,7 +17,9 @@ function task() {
 
 async function main() {
   if (statusObj.status === STATUS.TOAPPLY) {
-    await utils.sleep(Math.random() * 6 * 60 * 1000)
+    const Ticks = [5, 10, 15, 20]
+    const index = Math.floor(Math.random() * Ticks.length)
+    await utils.sleep(Ticks[index] * 60 * 1000 + Math.random() * 6 * 60 * 1000)
     const browser = await puppeteer.launch({
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
