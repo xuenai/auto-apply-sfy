@@ -29,12 +29,12 @@ async function main() {
     await sanfengyun(page, statusObj)
   
     await browser.close()
-    main()
+    return main()
   }
   else if (statusObj.status === STATUS.WAITAUDIT) {
-    await sleep(3 * 60 * 60 * 1000)
+    await sleep(2 * 60 * 60 * 1000)
     statusObj.status = STATUS.TOAPPLY
-    main()
+    return main()
   }
   else if (statusObj.status === STATUS.NOTUNTILL) {
     return

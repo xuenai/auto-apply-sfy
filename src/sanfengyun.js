@@ -43,6 +43,7 @@ module.exports = async (page, statusObj) => {
   if (resubmit) {
     await resubmit.click()
   }
+  await sleep(300)
   const urlInput = await page.waitForSelector('#pane-seven .el-input__inner')
   await urlInput.focus()
   await page.keyboard.type(config.zhihuUrl)
