@@ -15,6 +15,10 @@ module.exports = async (page, statusObj) => {
   await searchBtn.click()
 
   await sleep(5000)
+  const [kztBtn] = await page.$x('//a[text()="控制台"]')
+  if (kztBtn) await kztBtn.click()
+
+  await sleep(5000)
   const [productionBtn] = await page.$x('//a[text()="产品"]')
   await productionBtn.click()
   await page.waitForSelector('.navbar-collapse')
@@ -25,7 +29,7 @@ module.exports = async (page, statusObj) => {
   await page.waitForSelector('.freevps-table')
   const [freeBtn] = await page.$x('//span[text()="免费延期"]')
   await freeBtn.click()
-  await sleep(200)
+  await sleep(2000)
   // 审核中直接推出
   const [willtip] = await page.$x('//p[text()="您还未到需要提交延期的时间"]')
   if (willtip) {

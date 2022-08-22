@@ -28,7 +28,11 @@ async function main() {
     const page = await browser.newPage()
     page.setViewport({ width: 1920, height: 1080 })
     await screenshot(page)
-    await sanfengyun(page, statusObj)
+    try {
+      await sanfengyun(page, statusObj)
+    } catch(e) {
+      console.log(e)
+    }
   
     await browser.close()
     return main()

@@ -60,7 +60,7 @@ const comments = [
 module.exports = () => {
   let res = ''
   const indexs = []
-  while (res.length < 100) {
+  while (res.length < 111) {
     const index = Math.floor(Math.random() * comments.length)
     if (!indexs.includes(index)) {
       indexs.push(index)
